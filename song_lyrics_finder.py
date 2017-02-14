@@ -63,3 +63,20 @@ def song_save(song_id):
             print "Song saved successfully."
     except socket.timeout:
         print ("Timeout raised and caught")
+
+
+song_save('3657996')
+
+
+def song_clear(clear):
+    print "Are you sure you want to clear the database?"
+    raw_input("Enter yes or no")
+    if clear == "yes":
+        try:
+            sess.execute(SongLyricsFinder.delete())
+            sess.commit()
+            print "Database cleared successfully."
+        except:
+            sess.rollback()
+    else:
+        print ("Database Intact")
