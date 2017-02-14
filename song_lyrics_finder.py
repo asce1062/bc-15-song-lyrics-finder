@@ -1,17 +1,17 @@
 import json
 import socket
-import sqlite3
 import urllib2
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from models import SongLyricsFinder,Base
+
+from models import SongLyricsFinder
 
 # application starts
 Session = sessionmaker()
 
 # ... later
-engine = create_engine('sqlite:///song_lyrics.db', echo=True)
+engine = create_engine('sqlite:///song_lyrics.db')
 Session.configure(bind=engine)
 
 sess = Session()
@@ -47,8 +47,6 @@ song_find('3657996')
 def song_save(song_id):
     querystring = apiurl_musixmatch + "track.lyrics.get?track_id=" + urllib2.quote(
         song_id) + "&apikey=" + apikey_musixmatch + "&format=plain"
-    conn = sqlite3.connect(db_name)
-    c = conn.cursor()
     try:
         request = urllib2.Request(querystring)
         # timeout set to 4 seconds; automatically retries
