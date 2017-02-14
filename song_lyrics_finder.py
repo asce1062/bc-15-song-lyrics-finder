@@ -53,15 +53,13 @@ def song_save(song_id):
         response = urllib2.urlopen(request, timeout=4)
         raw = response.read()
         json_obj = json.loads(raw.decode("utf-8"))
-        body = len(json_obj["message"]["body"])
+        body = json_obj["message"]["body"]["lyrics"]["lyrics_body"]
         if body == 0:
             print "No lyrics found"
         else:
             song_found = SongLyricsFinder(song_id, body)
             sess.add(song_found)
             sess.commit()
+            print "Song saved successfully."
     except socket.timeout:
         print ("Timeout raised and caught")
-
-
-song_save('3657996')

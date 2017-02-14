@@ -17,7 +17,7 @@ class SongLyricsFinder(Base):
 
     id = Column(Integer, primary_key=True)
     # Use  song ID as index to speed up db search
-    song_id = Column(String(16), nullable=False, unique=True, index=True)
+    song_id = Column(String(200), nullable=False)
     song_lyrics = Column(String(1062), nullable=False)
 
     def __init__(self, song_id, song_lyrics):
