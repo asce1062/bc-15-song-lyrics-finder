@@ -1,6 +1,6 @@
 import json
-import urllib2
 import socket
+import urllib2
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
