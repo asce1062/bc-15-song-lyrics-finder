@@ -48,7 +48,6 @@ def docopt_cmd(func):
     fn.__dict__.update(func.__dict__)
     return fn
 
-
 class SongLyricsFinder(cmd.Cmd):
     print colored.cyan("  .::                                            .::::::::                 .::                 ", bold=12)
     print colored.cyan("  .::                       .:                   .::       .:              .::                 ", bold=12)
@@ -94,6 +93,12 @@ class SongLyricsFinder(cmd.Cmd):
         if track_id.isalpha():
             print "track id should contain numbers only"
         song_save(track_id)
+
+    @docopt_cmd
+    def do_clear(self, arg):
+        """Usage: clear
+        """
+        song_clear()
 
     def do_quit(self, arg):
         """Quits out of Interactive Mode."""

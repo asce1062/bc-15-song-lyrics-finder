@@ -1,13 +1,13 @@
 import json
+import os
 import socket
 import urllib2
-import os
 
 from prettytable import PrettyTable
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from models import SongLyricsFinder
+from models import SongLyricsFinder, Base
 
 # application starts
 Session = sessionmaker()
@@ -16,7 +16,7 @@ Session = sessionmaker()
 engine = create_engine('sqlite:///song_lyrics.db')
 Session.configure(bind=engine)
 
-sess = Session()
+session = Session()
 
 # Static variables.
 # API Key and API Endpoint
@@ -28,6 +28,9 @@ os.system('cls' if os.name == 'nt' else 'clear')
 
 # Returns a list of songs that match the criteria.
 def search(search_term):
+    """
+    song find <search_query_string> - Returns a list of songs that match the criteria.
+    """
     querystring = apiurl_musixmatch + "track.search?q_track=" + urllib2.quote(
         search_term) + "&apikey=" + apikey_musixmatch + "&format=plain"
     try:
@@ -56,6 +59,11 @@ def search(search_term):
 
 
 def song_view(song_id):
+    """
+    song view <song_id> - view song lyrics based on its ID.
+    Should be optimized by checking if there's a local copy before
+        searching online
+    """
     querystring = apiurl_musixmatch + "track.lyrics.get?track_id=" + urllib2.quote(
         song_id) + "&apikey=" + apikey_musixmatch + "&format=plain"
     try:
@@ -74,6 +82,9 @@ def song_view(song_id):
 
 
 def song_save(song_id):
+    """
+    song save <song_id> - Store song details and lyrics locally.
+    """
     querystring = apiurl_musixmatch + "track.lyrics.get?track_id=" + urllib2.quote(
         song_id) + "&apikey=" + apikey_musixmatch + "&format=plain"
     try:
@@ -87,22 +98,22 @@ def song_save(song_id):
             print "No lyrics found"
         else:
             song_found = SongLyricsFinder(song_id, body)
-            sess.add(song_found)
-            sess.commit()
+            session.add(song_found)
+            session.commit()
             print "Song saved successfully."
     except socket.timeout:
         print ("Timeout raised and caught")
 
 
-def song_clear(clear):
-    print "Are you sure you want to clear the database?"
-    raw_input("Enter yes or no")
-    if clear == "yes":
-        try:
-            sess.execute(SongLyricsFinder.delete())
-            sess.commit()
-            print "Database cleared successfully."
-        except:
-            sess.rollback()
-    else:
-        print ("Database Intact")
+def song_clear():
+    """
+    song clear - Clear entire local song database.
+    """
+    try:
+        # Drop all tables then recreate them.
+        Base.metadata.drop_all(bind=engine)
+        print "Database cleared successfully."
+        Base.metadata.create_all(bind=engine)
+        print "Database recreated successfully."
+    except:
+        sess.rollback()
