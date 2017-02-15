@@ -10,7 +10,6 @@ song save <song_id> - store song details and lyrics locally
 song clear - clear the entire local databse
 """
 import cmd
-import sys
 
 from clint.textui import colored
 from docopt import docopt, DocoptExit
@@ -51,18 +50,27 @@ def docopt_cmd(func):
 
 
 class SongLyricsFinder(cmd.Cmd):
-    print colored.cyan("+--------------------------------+", bold=12)
-    print colored.cyan("|        Song Lyrics Finder      |", bold=12)
-    print colored.cyan("|--------------------------------|", bold=12)
-    print colored.cyan("|Command |   Input   | Parameter |", bold=12)
-    print colored.cyan("|--------------------------------|", bold=12)
-    print colored.cyan("|find    | song name |    BYOB   |", bold=12)
-    print colored.cyan("|view    |  Song ID  |  3657996  |", bold=12)
-    print colored.cyan("|save    |  Song ID  |  3657996  |", bold=12)
-    print colored.cyan("|clear   |   clear   |    N/A    |", bold=12)
-    print colored.cyan("|--------------------------------|", bold=12)
-    print colored.cyan('|  type "help" to view commands  |', bold=12)
-    print colored.cyan("+--------------------------------+", bold=12)
+    print colored.cyan("  .::                                            .::::::::                 .::                 ", bold=12)
+    print colored.cyan("  .::                       .:                   .::       .:              .::                 ", bold=12)
+    print colored.cyan("  .::      .::   .::.: .:::      .::: .::::      .::         .:: .::       .::   .::    .: .:::", bold=12)
+    print colored.cyan("  .::       .:: .::  .::   .:: .::   .::         .::::::  .:: .::  .:: .:: .:: .:   .::  .::   ", bold=12)
+    print colored.cyan("  .::         .:::   .::   .::.::      .:::      .::      .:: .::  .::.:   .::.::::: .:: .::   ", bold=12)
+    print colored.cyan("  .::          .::   .::   .:: .::       .::     .::      .:: .::  .::.:   .::.:         .::   ", bold=12)
+    print colored.cyan("  .::::::::   .::   .:::   .::   .:::.:: .::     .::      .::.:::  .:: .:: .::  .::::   .:::   ", bold=12)
+    print colored.cyan("            .::", bold=12)
+
+    print colored.cyan("                                +--------------------------------+", bold=12)
+    print colored.cyan("                                |        Song Lyrics Finder      |", bold=12)
+    print colored.cyan("                                |--------------------------------|", bold=12)
+    print colored.cyan("                                |Command |   Input   | Parameter |", bold=12)
+    print colored.cyan("                                |--------------------------------|", bold=12)
+    print colored.cyan("                                |find    | song name |    BYOB   |", bold=12)
+    print colored.cyan("                                |view    |  Song ID  |  3657996  |", bold=12)
+    print colored.cyan("                                |save    |  Song ID  |  3657996  |", bold=12)
+    print colored.cyan("                                |clear   |   clear   |    N/A    |", bold=12)
+    print colored.cyan("                                |--------------------------------|", bold=12)
+    print colored.cyan('                                |  type "help" to view commands  |', bold=12)
+    print colored.cyan("                                +--------------------------------+", bold=12)
     prompt = colored.green("Alex.Immer@ANDELA-BOOT CAMP ~ \n$ ", bold=12)
 
     @docopt_cmd

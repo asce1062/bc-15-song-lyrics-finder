@@ -55,9 +55,9 @@ def search(search_term):
         print 'Connection timed out, try again'
 
 
-def song_view(search_term):
+def song_view(song_id):
     querystring = apiurl_musixmatch + "track.lyrics.get?track_id=" + urllib2.quote(
-        search_term) + "&apikey=" + apikey_musixmatch + "&format=plain"
+        song_id) + "&apikey=" + apikey_musixmatch + "&format=plain"
     try:
         request = urllib2.Request(querystring)
         # timeout set to 4 seconds; automatically retries
