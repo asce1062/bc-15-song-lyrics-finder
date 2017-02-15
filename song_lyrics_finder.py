@@ -1,8 +1,8 @@
 import json
-import os
 import socket
 import urllib2
 
+from clint.textui import colored
 from prettytable import PrettyTable
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -23,8 +23,6 @@ session = Session()
 # API Key and API Endpoint
 apikey_musixmatch = 'bbc2cd1c9f66b9294d130add1b3534c4'
 apiurl_musixmatch = 'http://api.musixmatch.com/ws/1.1/'
-
-os.system('cls' if os.name == 'nt' else 'clear')
 
 
 # Returns a list of songs that match the criteria.
@@ -54,7 +52,7 @@ def search(search_term):
             list_of_all_songs.append(song_details)
             track_table.add_row(
                 [result_id, title, artist_name])
-        print track_table
+        print colored.yellow(track_table, bold=12)
     except socket.timeout:
         print 'Connection timed out, try again'
 
@@ -75,9 +73,9 @@ def song_view(song_id):
         json_obj = json.loads(raw.decode("utf-8"))
         body = len(json_obj["message"]["body"])
         if body == 0:
-            print "No lyrics found"
+            print colored.red("No lyrics found", bold=12)
         else:
-            print json_obj["message"]["body"]["lyrics"]["lyrics_body"]
+            print colored.blue(json_obj["message"]["body"]["lyrics"]["lyrics_body"], bold=12)
     except socket.timeout:
         print ("Timeout raised and caught")
 
@@ -96,12 +94,12 @@ def song_save(song_id):
         json_obj = json.loads(raw.decode("utf-8"))
         body = json_obj["message"]["body"]["lyrics"]["lyrics_body"]
         if body == 0:
-            print "No lyrics found"
+            print colored.red("No lyrics found", bold=12)
         else:
             song_found = SongLyricsFinder(song_id, body)
             session.add(song_found)
             session.commit()
-            print "Song saved successfully."
+            print colored.green("Song saved successfully.", bold=12)
     except socket.timeout:
         print ("Timeout raised and caught")
 
@@ -113,8 +111,8 @@ def song_clear():
     try:
         # Drop all tables then recreate them.
         Base.metadata.drop_all(bind=engine)
-        print "Database cleared successfully."
+        print colored.red("All tables dropped successfully.", bold=12)
         Base.metadata.create_all(bind=engine)
-        print "Database recreated successfully."
+        print colored.green("all tables recreated successfully", bold=12)
     except:
         session.rollback()
