@@ -1,10 +1,11 @@
 import json
 import socket
 import urllib2
+import os
 
+from prettytable import PrettyTable
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from prettytable import PrettyTable
 
 from models import SongLyricsFinder
 
@@ -21,7 +22,8 @@ sess = Session()
 # API Key and API Endpoint
 apikey_musixmatch = 'bbc2cd1c9f66b9294d130add1b3534c4'
 apiurl_musixmatch = 'http://api.musixmatch.com/ws/1.1/'
-db_name = 'song_lyrics.db'
+
+os.system('cls' if os.name == 'nt' else 'clear')
 
 
 # Returns a list of songs that match the criteria.
@@ -30,13 +32,13 @@ def search(search_term):
         search_term) + "&apikey=" + apikey_musixmatch + "&format=plain"
     try:
         request = urllib2.Request(querystring)
-        # timeout set 4 seconds; automatically retries
+        # timeout set 4 to seconds; automatically retries
         response = urllib2.urlopen(request, timeout=4)
         raw = response.read()
         json_obj = json.loads(raw.decode("utf-8"))
         body = json_obj['message']['body']['track_list']
         list_of_all_songs = []
-        track_table = PrettyTable(['Track Id', 'Track Name', 'Artist Name'])
+        track_table = PrettyTable(['Song ID', 'Song Name', 'Artist Name'])
         for result in body:
             song_details = []
             result_id = result['track']['track_id']
@@ -51,8 +53,6 @@ def search(search_term):
         print track_table
     except socket.timeout:
         print 'Connection timed out, try again'
-
-search('byob')
 
 
 def song_view(search_term):
@@ -71,9 +71,6 @@ def song_view(search_term):
             print json_obj["message"]["body"]["lyrics"]["lyrics_body"]
     except socket.timeout:
         print ("Timeout raised and caught")
-
-
-song_view('3657996')
 
 
 def song_save(song_id):
@@ -95,9 +92,6 @@ def song_save(song_id):
             print "Song saved successfully."
     except socket.timeout:
         print ("Timeout raised and caught")
-
-
-song_save('3657996')
 
 
 def song_clear(clear):
