@@ -16,6 +16,7 @@ Session = sessionmaker()
 engine = create_engine('sqlite:///song_lyrics.db')
 Session.configure(bind=engine)
 
+# instantiate database transactions
 session = Session()
 
 # Static variables.
@@ -116,4 +117,4 @@ def song_clear():
         Base.metadata.create_all(bind=engine)
         print "Database recreated successfully."
     except:
-        sess.rollback()
+        session.rollback()
