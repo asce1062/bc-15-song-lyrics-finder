@@ -25,35 +25,37 @@ db_name = 'song_lyrics.db'
 
 
 # Returns a list of songs that match the criteria.
-def song_find_name(search_name):
-    querystring = apiurl_musixmatch + "track.search?q_track=" + search_name + "&apikey=" + apikey_musixmatch + "&json"
+def search(search_term):
+    querystring = apiurl_musixmatch + "track.search?q_track=" + urllib2.quote(
+        search_term) + "&apikey=" + apikey_musixmatch + "&format=plain"
     try:
         request = urllib2.Request(querystring)
-        # timeout set to 4 seconds; automatically retries
+        # timeout set 4 seconds; automatically retries
         response = urllib2.urlopen(request, timeout=4)
         raw = response.read()
         json_obj = json.loads(raw.decode("utf-8"))
-        body = len(json_obj["message"]["body"])
-        song_list = []
-        track_table = PrettyTable(['Track Id', 'Track Name', 'Primary Artist'])
+        body = json_obj['message']['body']['track_list']
+        list_of_all_songs = []
+        track_table = PrettyTable(['Track Id', 'Track Name', 'Artist Name'])
         for result in body:
             song_details = []
-            song_id = result['track']['track_id']
-            song_name = result['track']['track_name']
+            result_id = result['track']['track_id']
+            title = result['track']['track_name']
             artist_name = result['track']['artist_name']
-            song_details.insert(0, song_id)
-            song_details.insert(1, song_name)
+            song_details.insert(0, result_id)
+            song_details.insert(1, title)
             song_details.insert(2, artist_name)
-            song_list.append(song_details)
-            track_table.add_row([song_id, song_name, artist_name])
+            list_of_all_songs.append(song_details)
+            track_table.add_row(
+                [result_id, title, artist_name])
         print track_table
     except socket.timeout:
-        print 'connection time out, try again'
+        print 'Connection timed out, try again'
 
-song_find_name('system of a down')
+search('byob')
 
 
-def song_find(search_term):
+def song_view(search_term):
     querystring = apiurl_musixmatch + "track.lyrics.get?track_id=" + urllib2.quote(
         search_term) + "&apikey=" + apikey_musixmatch + "&format=plain"
     try:
@@ -71,7 +73,7 @@ def song_find(search_term):
         print ("Timeout raised and caught")
 
 
-song_find('3657996')
+song_view('3657996')
 
 
 def song_save(song_id):
