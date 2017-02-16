@@ -1,5 +1,6 @@
-# The following are all of the standard imports that are needed to run the
-# database
+"""
+http://pythoncentral.io/introductory-tutorial-python-sqlalchemy/
+"""
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
@@ -14,9 +15,9 @@ Base = declarative_base()
 # songs and their lyrics
 class SongLyricsFinder(Base):
     __tablename__ = 'song_lyrics'
-
+    # Here we define columns for the table song_lyrics
+    # Notice that each column is also a normal Python instance attribute.
     id = Column(Integer, primary_key=True)
-    # Use  song ID as index to speed up db search
     song_id = Column(String(200), nullable=False)
     song_lyrics = Column(String(1062), nullable=False)
 
@@ -24,8 +25,10 @@ class SongLyricsFinder(Base):
         self.song_id = song_id
         self.song_lyrics = song_lyrics
 
-
+# Create an engine that stores data in the local directory's
+# song_lyrics.db file.
 engine = create_engine('sqlite:///song_lyrics.db')
 
-# Create all tables.
+# Create all tables in the engine. This is equivalent to "Create Table"
+# statements in raw SQL.
 Base.metadata.create_all(engine)
