@@ -50,7 +50,7 @@
 - ```save <query>``` - saves the song to a local database ```song_lyrics.db```.
     
     *Usage*: : ```save 3657996``` will save **BYOB** by **System of a Down** to the local database.
- - ```cear``` - Clear the entire local database.
+- ```cear``` - Clear the entire local database.
  
     *Usage* : ```clear``` will clear entire local database.
  
