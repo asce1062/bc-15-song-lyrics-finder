@@ -84,7 +84,7 @@ def song_view(song_id):
         if body == 0:
             print colored.red("No lyrics found", bold=12)
         else:
-            print colored.blue(json_obj["message"]["body"]["lyrics"]["lyrics_body"], bold=12)
+            print colored.cyan(json_obj["message"]["body"]["lyrics"]["lyrics_body"], bold=12)
     except socket.timeout:
         print ("Timeout raised and caught")
 
