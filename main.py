@@ -1,6 +1,6 @@
 """
 Song Lyrics Finder
-For this project, I have made use of MusixMatch API.
+MusixMatch API.
 As a user, I can perform the following operations:
 find <search_query_string> - Returns a list of songs that match the criteria.
 view <song_id> - View song lyrics based on its ID. Optimized to check for local copy first.
@@ -91,6 +91,8 @@ class SongLyricsFinder(cmd.Cmd):
     print colored.cyan("                                                        |clear   |   clear   |    N/A    |", bold=12)
     print colored.cyan("                                                        |--------------------------------|", bold=12)
     print colored.cyan('                                                        |  type "help" to view commands  |', bold=12)
+    print colored.cyan("                                                        |--------------------------------|", bold=12)
+    print colored.cyan('                                                        |type "help command" for  syntax |', bold=12)
     print colored.cyan("                                                        +--------------------------------+", bold=12)
     prompt = colored.green("Alex.Immer@ANDELA_BOOT_CAMP ~ \n$ ", bold=12)
 

@@ -1,6 +1,6 @@
 #Song Lyrics Finder.
 
-![song lyrics finder ui](http://i.imgur.com/Ta2HiDP.png)
+![song lyrics finder ui](https://i.imgur.com/wSjNUJN.png)
 
 **PROBLEM STATEMENT:**
 
