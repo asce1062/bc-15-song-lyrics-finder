@@ -1,8 +1,9 @@
 #Song Lyrics Finder.
 
-![alt tag](http://i.imgur.com/Ta2HiDP.png)
+![song lyrics finder ui](http://i.imgur.com/Ta2HiDP.png)
 
-**Problem statement**
+**PROBLEM STATEMENT:**
+
 - For this project, you will be expected to make use of [MusixMatch API](https://developer.musixmatch.com/).
 
 - As a user, I can perform the following operations:
@@ -20,7 +21,7 @@
 1. Clone Repo:
 
     ```
-    $ git clone git clone https://github.com/asce1062/bc-15-song-lyrics-finder.git
+    $ git clone https://github.com/asce1062/bc-15-song-lyrics-finder.git
     ```
     ```
     $ cd bc-15-song-lyrics-finder
@@ -33,13 +34,18 @@
     ```
     $ pip install -r requirements.txt
     ```
+4. Create local database in same directory
+
+    ```
+    $ python models.py
+    ```
 
 4. Run 
 
     ```
     $ python main.py
     ```
- **USAGE:**
+**USAGE:**
  
 - ```find <query>``` - Finds the top 10 artists based on query and returns Song ID, Song Name and Artist Name._Song ID will be used to find lyrics_
  
