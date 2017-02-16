@@ -50,6 +50,7 @@ def docopt_cmd(func):
 class SongLyricsFinder(cmd.Cmd):
     # clear terminal first.
     os.system('cls' if os.name == 'nt' else 'clear')
+    # Andela logo from https://www.movemeback.com/opportunities/andela-role-in-technology/
 
     print colored.cyan('                          O8', bold=12)
     print colored.cyan('                         @@@@C', bold=12)
