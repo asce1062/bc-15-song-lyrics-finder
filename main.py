@@ -11,6 +11,7 @@ import cmd
 import os
 from docopt import docopt, DocoptExit
 import time
+import string
 
 from song_lyrics_finder import *
 
@@ -94,7 +95,7 @@ class SongLyricsFinder(cmd.Cmd):
     print colored.cyan("                                                    |--------------------------------|", bold=12)
     print colored.cyan('                                                    |  type "help" to view commands  |', bold=12)
     print colored.cyan("                                                    +--------------------------------+", bold=12)
-    prompt = colored.green("Alex.Immer@ANDELA-BOOT-CAMP ~ \n$ ", bold=12)
+    prompt = colored.green("Alex.Immer@ANDELA_BOOT_CAMP ~ \n$ ", bold=12)
 
     @docopt_cmd
     def do_find(self, arg):
@@ -108,32 +109,34 @@ class SongLyricsFinder(cmd.Cmd):
         search(query)
 
     @docopt_cmd
-    def do_view(self, arg):
+    def do_view(self,arg):
         """
         Usage: view <track_id>
         """
-        track_id = arg["<track_id>"]
-        if track_id.isalpha():
-            print "Track id should contain numbers only"
-
-            # clear terminal first.
+        try:
             os.system('cls' if os.name == 'nt' else 'clear')
-        os.system('cls' if os.name == 'nt' else 'clear')
-        song_view(track_id)
+            track_id = arg["<track_id>"]
+            assert any([char not in string.ascii_letters for char in track_id]) is True
+        except AssertionError:
+            print colored.red("Usage: view <track_id> MUST consist of integers only", bold=12)
+        else:
+            os.system('cls' if os.name == 'nt' else 'clear')
+            song_view(track_id)
 
     @docopt_cmd
     def do_save(self, arg):
         """
         Usage: save <track_id>
         """
-        track_id = arg["<track_id>"]
-        if track_id.isalpha():
-            print "track id should contain numbers only"
-
-            # clear terminal first.
+        try:
             os.system('cls' if os.name == 'nt' else 'clear')
-        os.system('cls' if os.name == 'nt' else 'clear')
-        song_save(track_id)
+            track_id = arg["<track_id>"]
+            assert any([char not in string.ascii_letters for char in track_id]) is True
+        except AssertionError:
+            print colored.red("Usage: save <track_id> MUST consist of integers only", bold=12)
+        else:
+            os.system('cls' if os.name == 'nt' else 'clear')
+            song_save(track_id)
 
     @docopt_cmd
     def do_clear(self, arg):
@@ -151,62 +154,62 @@ class SongLyricsFinder(cmd.Cmd):
         # clear terminal first.
         os.system('cls' if os.name == 'nt' else 'clear')
         print colored.red('Goodbye.', bold=12)
-        time.sleep(3)  # delays for 5 seconds
+        time.sleep(3)  # delays for 3 seconds
         # clear terminal first.
         os.system('cls' if os.name == 'nt' else 'clear')
-        time.sleep(0.25)  # delays for 5 seconds
+        time.sleep(0.25)  # delays for 0.3 seconds
         print colored.magenta('                           oooo$$$$$$$$$$$$oooo', bold=12)
-        time.sleep(0.25)  # delays for 5 seconds
+        time.sleep(0.25)  # delays for 0.3 seconds
         print colored.magenta('                       oo$$$$$$$$$$$$$$$$$$$$$$$$o', bold=12)
-        time.sleep(0.25)  # delays for 5 seconds
+        time.sleep(0.25)  # delays for 0.3 seconds
         print colored.magenta('                    oo$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$o         o$   $$ o$', bold=12)
-        time.sleep(0.25)  # delays for 5 seconds
+        time.sleep(0.25)  # delays for 0.3 seconds
         print colored.magenta('    o $ oo        o$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$o       $$ $$ $$o$', bold=12)
-        time.sleep(0.25)  # delays for 5 seconds
+        time.sleep(0.25)  # delays for 0.3 seconds
         print colored.magenta(' oo $ $ "$      o$$$$$$$$$    $$$$$$$$$$$$$    $$$$$$$$$o       $$$o$$o$', bold=12)
-        time.sleep(0.25)  # delays for 5 seconds
+        time.sleep(0.25)  # delays for 0.3 seconds
         print colored.magenta(' "$$$$$$o$     o$$$$$$$$$      $$$$$$$$$$$      $$$$$$$$$$o    $$$$$$$$', bold=12)
-        time.sleep(0.25)  # delays for 5 seconds
+        time.sleep(0.25)  # delays for 0.3 seconds
         print colored.magenta('   $$$$$$$    $$$$$$$$$$$      $$$$$$$$$$$      $$$$$$$$$$$$$$$$$$$$$$$', bold=12)
-        time.sleep(0.25)  # delays for 5 seconds
+        time.sleep(0.25)  # delays for 0.3 seconds
         print colored.magenta('   $$$$$$$$$$$$$$$$$$$$$$$    $$$$$$$$$$$$$    $$$$$$$$$$$$$$  """$$$', bold=12)
-        time.sleep(0.25)  # delays for 5 seconds
+        time.sleep(0.25)  # delays for 0.3 seconds
         print colored.magenta('    "$$$""""$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$     "$$$', bold=12)
-        time.sleep(0.25)  # delays for 5 seconds
+        time.sleep(0.25)  # delays for 0.3 seconds
         print colored.magenta('     $$$   o$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$     "$$$o', bold=12)
-        time.sleep(0.25)  # delays for 5 seconds
+        time.sleep(0.25)  # delays for 0.3 seconds
         print colored.magenta('    o$$"   $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$       $$$o', bold=12)
-        time.sleep(0.25)  # delays for 5 seconds
+        time.sleep(0.25)  # delays for 0.3 seconds
         print colored.magenta('    $$$    $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$" "$$$$$$ooooo$$$$o', bold=12)
-        time.sleep(0.25)  # delays for 5 seconds
+        time.sleep(0.25)  # delays for 0.3 seconds
         print colored.magenta('   o$$$oooo$$$$$  $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$   o$$$$$$$$$$$$$$$$$', bold=12)
-        time.sleep(0.25)  # delays for 5 seconds
+        time.sleep(0.25)  # delays for 0.3 seconds
         print colored.magenta('   $$$$$$$$"$$$$   $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$     $$$$""""""""', bold=12)
-        time.sleep(0.3)  # delays for 5 seconds
+        time.sleep(0.3)  # delays for 0.3 seconds
         print colored.magenta('  """"       $$$$    "$$$$$$$$$$$$$$$$$$$$$$$$$$$$"      o$$$', bold=12)
-        time.sleep(0.3)  # delays for 5 seconds
+        time.sleep(0.3)  # delays for 0.3 seconds
         print colored.magenta('             "$$$o     """$$$$$$$$$$$$$$$$$$"$$"         $$$', bold=12)
-        time.sleep(0.3)  # delays for 5 seconds
+        time.sleep(0.3)  # delays for 0.3 seconds
         print colored.magenta('               $$$o          "$$""$$$$$$""""           o$$$', bold=12)
-        time.sleep(0.3)  # delays for 5 seconds
+        time.sleep(0.3)  # delays for 0.3 seconds
         print colored.magenta('                $$$$o                 oo             o$$$"', bold=12)
-        time.sleep(0.3)  # delays for 5 seconds
+        time.sleep(0.3)  # delays for 0.3 seconds
         print colored.magenta('                 "$$$$o      o$$$$$$o"$$$$o        o$$$$', bold=12)
-        time.sleep(0.3)  # delays for 5 seconds
+        time.sleep(0.3)  # delays for 0.3 seconds
         print colored.magenta('                   "$$$$$oo     ""$$$$o$$$$$o   o$$$$""', bold=12)
-        time.sleep(0.3)  # delays for 5 seconds
+        time.sleep(0.3)  # delays for 0.3 seconds
         print colored.magenta('                      ""$$$$$oooo  "$$$o$$$$$$$$$"""', bold=12)
-        time.sleep(0.3)  # delays for 5 seconds
+        time.sleep(0.3)  # delays for 0.3 seconds
         print colored.magenta('                         ""$$$$$$$oo $$$$$$$$$$', bold=12)
-        time.sleep(0.3)  # delays for 5 seconds
+        time.sleep(0.3)  # delays for 0.3 seconds
         print colored.magenta('                                 """"$$$$$$$$$$$', bold=12)
-        time.sleep(0.3)  # delays for 5 seconds
+        time.sleep(0.3)  # delays for 0.3 seconds
         print colored.magenta('                                     $$$$$$$$$$$$', bold=12)
-        time.sleep(0.3)  # delays for 5 seconds
+        time.sleep(0.3)  # delays for 0.3 seconds
         print colored.magenta('                                      $$$$$$$$$$"', bold=12)
-        time.sleep(0.3)  # delays for 5 seconds
+        time.sleep(0.3)  # delays for 0.3 seconds
         print colored.magenta('                                       "$$$""""', bold=12)
-        time.sleep(0.3)  # delays for 5 seconds
+        time.sleep(0.3)  # delays for 0.3 seconds
         exit()
 
 
