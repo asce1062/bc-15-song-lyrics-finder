@@ -73,28 +73,25 @@ class SongLyricsFinder(cmd.Cmd):
     print colored.cyan('                         o@@o', bold=12)
     print ("")
     print ("")
-    print colored.cyan("                          .::                                            .::::::::                 .::                 ", bold=12)
-    print colored.cyan("                          .::                       .:                   .::       .:              .::                 ", bold=12)
-    print colored.cyan("                          .::      .::   .::.: .:::      .::: .::::      .::         .:: .::       .::   .::    .: .:::", bold=12)
-    print colored.cyan("                          .::       .:: .::  .::   .:: .::   .::         .::::::  .:: .::  .:: .:: .:: .:   .::  .::   ", bold=12)
-    print colored.cyan("                          .::         .:::   .::   .::.::      .:::      .::      .:: .::  .::.:   .::.::::: .:: .::   ", bold=12)
-    print colored.cyan("                          .::          .::   .::   .:: .::       .::     .::      .:: .::  .::.:   .::.:         .::   ", bold=12)
-    print colored.cyan("                          .::::::::   .::   .:::   .::   .:::.:: .::     .::      .::.:::  .:: .:: .::  .::::   .:::   ", bold=12)
-    print colored.cyan("                                     .::", bold=12)
+    print colored.cyan("                                 ___                  _              _            ___  _         _           ", bold=12)
+    print colored.cyan("                                / __> ___ ._ _  ___  | |   _ _  _ _ <_> ___  ___ | __><_>._ _  _| | ___  _ _ ", bold=12)
+    print colored.cyan("                                \__ \/ . \| ' |/ . | | |_ | | || '_>| |/ | '<_-< | _> | || ' |/ . |/ ._>| '_>", bold=12)
+    print colored.cyan("                                <___/\___/|_|_|\_. | |___|`_. ||_|  |_|\_|_./__/ |_|  |_||_|_|\___|\___.|_|  ", bold=12)
+    print colored.cyan("                                               <___'      <___'                                              ", bold=12)
     print ("")
     print ("")
-    print colored.cyan("                                                      +--------------------------------+", bold=12)
-    print colored.cyan("                                                      |        Song Lyrics Finder      |", bold=12)
-    print colored.cyan("                                                      |--------------------------------|", bold=12)
-    print colored.cyan("                                                      |Command |   Input   |  Example  |", bold=12)
-    print colored.cyan("                                                      |--------------------------------|", bold=12)
-    print colored.cyan("                                                      |find    | song name |    BYOB   |", bold=12)
-    print colored.cyan("                                                      |view    |  Song ID  |  3657996  |", bold=12)
-    print colored.cyan("                                                      |save    |  Song ID  |  3657996  |", bold=12)
-    print colored.cyan("                                                      |clear   |   clear   |    N/A    |", bold=12)
-    print colored.cyan("                                                      |--------------------------------|", bold=12)
-    print colored.cyan('                                                      |  type "help" to view commands  |', bold=12)
-    print colored.cyan("                                                      +--------------------------------+", bold=12)
+    print colored.cyan("                                                        +--------------------------------+", bold=12)
+    print colored.cyan("                                                        |        Song Lyrics Finder      |", bold=12)
+    print colored.cyan("                                                        |--------------------------------|", bold=12)
+    print colored.cyan("                                                        |Command |   Input   |  Example  |", bold=12)
+    print colored.cyan("                                                        |--------------------------------|", bold=12)
+    print colored.cyan("                                                        |find    | Song_name |    BYOB   |", bold=12)
+    print colored.cyan("                                                        |view    |  SongID   |  3657996  |", bold=12)
+    print colored.cyan("                                                        |save    |  SongID   |  3657996  |", bold=12)
+    print colored.cyan("                                                        |clear   |   clear   |    N/A    |", bold=12)
+    print colored.cyan("                                                        |--------------------------------|", bold=12)
+    print colored.cyan('                                                        |  type "help" to view commands  |', bold=12)
+    print colored.cyan("                                                        +--------------------------------+", bold=12)
     prompt = colored.green("Alex.Immer@ANDELA_BOOT_CAMP ~ \n$ ", bold=12)
 
     @docopt_cmd
@@ -111,11 +108,11 @@ class SongLyricsFinder(cmd.Cmd):
     @docopt_cmd
     def do_view(self,arg):
         """
-        Usage: view <track_id>
+        Usage: view <trackid>
         """
         try:
             os.system('cls' if os.name == 'nt' else 'clear')
-            track_id = arg["<track_id>"]
+            track_id = arg["<trackid>"]
             assert any([char not in string.ascii_letters for char in track_id]) is True
         except AssertionError:
             print colored.red("Usage: view <track_id> MUST consist of integers only", bold=12)
@@ -126,11 +123,11 @@ class SongLyricsFinder(cmd.Cmd):
     @docopt_cmd
     def do_save(self, arg):
         """
-        Usage: save <track_id>
+        Usage: save <trackid>
         """
         try:
             os.system('cls' if os.name == 'nt' else 'clear')
-            track_id = arg["<track_id>"]
+            track_id = arg["<trackid>"]
             assert any([char not in string.ascii_letters for char in track_id]) is True
         except AssertionError:
             print colored.red("Usage: save <track_id> MUST consist of integers only", bold=12)
@@ -209,6 +206,28 @@ class SongLyricsFinder(cmd.Cmd):
         print colored.magenta('                                      $$$$$$$$$$"', bold=12)
         time.sleep(0.3)  # delays for 0.3 seconds
         print colored.magenta('                                       "$$$""""', bold=12)
+        time.sleep(0.3)  # delays for 0.3 seconds
+        print colored.cyan('                                              ___                       ___', bold=12)
+        time.sleep(0.3)  # delays for 0.3 seconds
+        print colored.cyan('                                             /\  \          ___        /\  \\', bold=12)
+        time.sleep(0.3)  # delays for 0.3 seconds
+        print colored.cyan('                                             \:\  \        /\  \      /::\  \\', bold=12)
+        time.sleep(0.3)  # delays for 0.3 seconds
+        print colored.cyan('                                              \:\  \       \:\  \    /:/\:\  \\', bold=12)
+        time.sleep(0.3)  # delays for 0.3 seconds
+        print colored.cyan('                                              /::\  \      /::\__\  /::\~\:\  \\', bold=12)
+        time.sleep(0.3)  # delays for 0.3 seconds
+        print colored.cyan('                                             /:/\:\__\  __/:/\/__/ /:/\:\ \:\__\\', bold=12)
+        time.sleep(0.3)  # delays for 0.3 seconds
+        print colored.cyan('                                            /:/  \/__/ /\/:/  /    \/__\:\/:/  /', bold=12)
+        time.sleep(0.3)  # delays for 0.3 seconds
+        print colored.cyan('                                           /:/  /      \::/__/          \::/  /', bold=12)
+        time.sleep(0.3)  # delays for 0.3 seconds
+        print colored.cyan('                                           \/__/        \:\__\          /:/  /', bold=12)
+        time.sleep(0.3)  # delays for 0.3 seconds
+        print colored.cyan('                                                         \/__/         /:/  /', bold=12)
+        time.sleep(0.3)  # delays for 0.3 seconds
+        print colored.cyan('                                                                       \/__/', bold=12)
         time.sleep(0.3)  # delays for 0.3 seconds
         exit()
 
