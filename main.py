@@ -10,7 +10,6 @@ clear - clear the entire local database
 import cmd
 import os
 from docopt import docopt, DocoptExit
-import time
 import string
 
 from song_lyrics_finder import *
@@ -87,7 +86,7 @@ class SongLyricsFinder(cmd.Cmd):
     print colored.cyan("                                                      +--------------------------------+", bold=12)
     print colored.cyan("                                                      |        Song Lyrics Finder      |", bold=12)
     print colored.cyan("                                                      |--------------------------------|", bold=12)
-    print colored.cyan("                                                      |Command |   Input   | Parameter |", bold=12)
+    print colored.cyan("                                                      |Command |   Input   |  Example  |", bold=12)
     print colored.cyan("                                                      |--------------------------------|", bold=12)
     print colored.cyan("                                                      |find    | song name |    BYOB   |", bold=12)
     print colored.cyan("                                                      |view    |  Song ID  |  3657996  |", bold=12)
@@ -101,9 +100,9 @@ class SongLyricsFinder(cmd.Cmd):
     @docopt_cmd
     def do_find(self, arg):
         """
-        Usage: find <query>
+        Usage: find <song_name>
         """
-        query = arg["<query>"]
+        query = arg["<song_name>"]
 
         # clear terminal first.
         os.system('cls' if os.name == 'nt' else 'clear')

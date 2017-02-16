@@ -40,7 +40,7 @@
     $ python models.py
     ```
 
-4. Run 
+5. Run 
 
     ```
     $ python main.py

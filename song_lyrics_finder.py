@@ -1,7 +1,10 @@
 import json
 import socket
 import urllib2
+import time
+import sys
 
+from time import sleep
 from clint.textui import colored
 from prettytable import PrettyTable
 from sqlalchemy import create_engine
@@ -34,6 +37,10 @@ apikey_musixmatch = 'bbc2cd1c9f66b9294d130add1b3534c4'
 apiurl_musixmatch = 'http://api.musixmatch.com/ws/1.1/'
 
 
+def do_task():
+    time.sleep(1)
+
+
 # Returns a list of songs that match the criteria.
 def search(search_term):
     """
@@ -45,8 +52,20 @@ def search(search_term):
         request = urllib2.Request(querystring)
         # timeout set 4 to seconds; automatically retries
         response = urllib2.urlopen(request, timeout=4)
-        raw = response.read()
-        json_obj = json.loads(raw.decode("utf-8"))
+        # raw = response.read()
+        print colored.green("Starting", bold=12)
+        all_data = ''
+        while True:
+            do_task()
+            print '\b.',
+            sys.stdout.flush()
+            data = response.read(2048)
+            if not data:
+                break
+            all_data += data
+            sleep(0.4)
+        print "\n"
+        json_obj = json.loads(all_data.decode("utf-8"))
         body = json_obj['message']['body']['track_list']
         list_of_all_songs = []
         track_table = PrettyTable(['Song ID', 'Song Name', 'Artist Name'])
@@ -78,8 +97,20 @@ def song_view(song_id):
         request = urllib2.Request(querystring)
         # timeout set to 4 seconds; automatically retries
         response = urllib2.urlopen(request, timeout=4)
-        raw = response.read()
-        json_obj = json.loads(raw.decode("utf-8"))
+        # raw = response.read()
+        print colored.green("Starting", bold=12)
+        all_data = ''
+        while True:
+            do_task()
+            print '\b.'
+            sys.stdout.flush()
+            data = response.read(2048)
+            if not data:
+                break
+            all_data += data
+            sleep(0.4)
+        print "\n"
+        json_obj = json.loads(all_data.decode("utf-8"))
         body = len(json_obj["message"]["body"])
         if body == 0:
             print colored.red("No lyrics found", bold=12)
@@ -99,8 +130,20 @@ def song_save(song_id):
         request = urllib2.Request(querystring)
         # timeout set to 4 seconds; automatically retries
         response = urllib2.urlopen(request, timeout=4)
-        raw = response.read()
-        json_obj = json.loads(raw.decode("utf-8"))
+        # raw = response.read()
+        print colored.green("Starting", bold=12)
+        all_data = ''
+        while True:
+            do_task()
+            print '\b.',
+            sys.stdout.flush()
+            data = response.read(2048)
+            if not data:
+                break
+            all_data += data
+            sleep(0.4)
+        print "\n"
+        json_obj = json.loads(all_data.decode("utf-8"))
         body = json_obj["message"]["body"]["lyrics"]["lyrics_body"]
         if body == 0:
             print colored.red("No lyrics found", bold=12)
@@ -120,8 +163,7 @@ def song_clear():
     try:
         # Drop all tables then recreate them.
         Base.metadata.drop_all(bind=engine)
-        print colored.red("All tables dropped successfully.", bold=12)
+        print colored.red("Database cleared successfully.", bold=12)
         Base.metadata.create_all(bind=engine)
-        print colored.green("All tables recreated successfully", bold=12)
     except:
         session.rollback()
