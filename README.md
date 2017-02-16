@@ -16,24 +16,31 @@
 4. `song clear` - Clear entire local song database.
 
 **GETTING STARTED:**
+
 1. Clone Repo:
+
     ```
     $ git clone git clone https://github.com/asce1062/bc-15-song-lyrics-finder.git
     ```
     ```
     $ cd bc-15-song-lyrics-finder
     ```
-2. Activate your virtualenv. _if you're "that" kind of guy (lol)_
+
+2.  Activate your virtualenv. _if you're "that" kind of guy (lol)_
 
 3. Install requiremets
+
     ```
     $ pip install -r requirements.txt
     ```
+
 4. Run 
+
     ```
     $ python main.py
     ```
  **USAGE:**
+ 
 - ```find <query>``` - Finds the top 10 artists based on query and returns Song ID, Song Name and Artist Name._Song ID will be used to find lyrics_
  
     *Usage*: ```find BYOB``` should display top 10 performances with the tittle **BYOB**.
