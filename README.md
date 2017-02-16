@@ -1,10 +1,10 @@
 #Song Lyrics Finder.
 
-![song lyrics finder ui](https://i.imgur.com/wSjNUJN.png)
+![song lyrics finder ui](https://i.imgur.com/wSjNUJN.png) 
 
 **PROBLEM STATEMENT:**
 
-- For this project, you will be expected to make use of [MusixMatch API](https://developer.musixmatch.com/).
+- For this project, you will be expected to make use of [MusixMatch API](https://developer.musixmatch.com/) or [RapGenius API](https://docs.genius.com/).
 
 - As a user, I can perform the following operations:
 
