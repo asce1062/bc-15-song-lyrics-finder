@@ -1,10 +1,10 @@
 #Song Lyrics Finder.
 
-![song lyrics finder ui](https://i.imgur.com/wSjNUJN.png)
+![song lyrics finder ui](https://i.imgur.com/wSjNUJN.png) 
 
 **PROBLEM STATEMENT:**
 
-- For this project, you will be expected to make use of [MusixMatch API](https://developer.musixmatch.com/).
+- For this project, you will be expected to make use of [MusixMatch API](https://developer.musixmatch.com/) or [RapGenius API](https://docs.genius.com/).
 
 - As a user, I can perform the following operations:
 
@@ -27,7 +27,7 @@
     $ cd bc-15-song-lyrics-finder
     ```
 
-2.  Activate your virtualenv. _if you're "that" kind of guy (lol)_
+2.  Activate your virtualenv. _Python 2.7.13 was used for this project_
 
 3. Install requiremets
 
@@ -40,20 +40,20 @@
     $ python models.py
     ```
 
-5. Run 
+5. Start the application 
 
     ```
     $ python main.py
     ```
 **USAGE:**
  
-- ```find <query>``` - Finds the top 10 artists based on query and returns Song ID, Song Name and Artist Name._Song ID will be used to find lyrics_
+- ```find <song_name>``` - returns the top 10 artists based on song_name and returns Song ID, Song Name and Artist Name(s)._Song ID will be used to find lyrics._
  
     *Usage*: ```find BYOB``` should display top 10 performances with the tittle **BYOB**.
-- ```view <query>``` - Displays the Lyrics based on Song ID entered.
+- ```view <trackid>``` - Displays the Lyrics based on Song ID entered.
     
     *Usage*: ```find 3657996``` search and display lyrics using the song IDs generated from ```find BYOB```. In this case **BYOB** by **System of a Down** who's song ID is **3657996**
-- ```save <query>``` - saves the song to a local database ```song_lyrics.db```.
+- ```save <trackid>``` - saves the song to a local database ```song_lyrics.db```.
     
     *Usage*: : ```save 3657996``` will save **BYOB** by **System of a Down** to the local database.
 - ```cear``` - Clear the entire local database.
