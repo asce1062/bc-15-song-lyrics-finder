@@ -49,7 +49,8 @@ def docopt_cmd(func):
 class SongLyricsFinder(cmd.Cmd):
     # clear terminal first.
     os.system('cls' if os.name == 'nt' else 'clear')
-    # Andela logo from https://www.movemeback.com/opportunities/andela-role-in-technology/
+    # Andela logo from
+    # https://www.movemeback.com/opportunities/andela-role-in-technology/
 
     print colored.cyan('                   O8', bold=12)
     print colored.cyan('                  @@@@C', bold=12)
@@ -108,14 +109,15 @@ class SongLyricsFinder(cmd.Cmd):
         search(query)
 
     @docopt_cmd
-    def do_view(self,arg):
+    def do_view(self, arg):
         """
         Usage: view <trackid>
         """
         try:
             os.system('cls' if os.name == 'nt' else 'clear')
             track_id = arg["<trackid>"]
-            assert any([char not in string.ascii_letters for char in track_id]) is True
+            assert any(
+                [char not in string.ascii_letters for char in track_id]) is True
         except AssertionError:
             print colored.red("Usage: view <track_id> MUST consist of integers only", bold=12)
         else:
@@ -130,7 +132,8 @@ class SongLyricsFinder(cmd.Cmd):
         try:
             os.system('cls' if os.name == 'nt' else 'clear')
             track_id = arg["<trackid>"]
-            assert any([char not in string.ascii_letters for char in track_id]) is True
+            assert any(
+                [char not in string.ascii_letters for char in track_id]) is True
         except AssertionError:
             print colored.red("Usage: save <track_id> MUST consist of integers only", bold=12)
         else:
