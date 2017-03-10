@@ -103,7 +103,8 @@ class SongLyricsFinder(cmd.Cmd):
         colored.yellow("AlexImmers-MacBook-Pro") + \
         colored.red(":") + \
         colored.cyan("~/bc-15-song-lyrics-finder") + \
-        colored.red("|") + colored.green("master") + \
+        colored.red("|") + \
+        colored.green("master") + \
         colored.yellow("⚡") + \
         colored.cyan("\n⇒")
 
