@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 """
 Song Lyrics Finder
 MusixMatch API.
@@ -95,7 +97,15 @@ class SongLyricsFinder(cmd.Cmd):
     print colored.cyan("                                                 |--------------------------------|", bold=12)
     print colored.cyan('                                                 |type "help command" for  syntax |', bold=12)
     print colored.cyan("                                                 +--------------------------------+", bold=12)
-    prompt = colored.green("Alex.Immer@ANDELA_BOOT_CAMP ~ \n$ ", bold=12)
+
+    prompt = colored.magenta("\nasce1062") + \
+        colored.cyan("@") + \
+        colored.yellow("AlexImmers-MacBook-Pro") + \
+        colored.red(":") + \
+        colored.cyan("~/bc-15-song-lyrics-finder") + \
+        colored.red("|") + colored.green("master") + \
+        colored.yellow("⚡") + \
+        colored.cyan("\n⇒")
 
     @docopt_cmd
     def do_find(self, arg):
