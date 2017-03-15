@@ -1,10 +1,18 @@
+"""
+Song Lyrics Finder
+MusixMatch API.
+As a user, I can perform the following operations:
+find <search_query_string> - Returns a list of songs that match the criteria.
+view <song_id> - View song lyrics based on its ID. Optimized to check for local copy first.
+save <song_id> - store song details and lyrics locally
+clear - clear the entire local database
+"""
 import json
 import socket
 import urllib2
 import time
 import sys
 
-from time import sleep
 from clint.textui import colored
 from prettytable import PrettyTable
 from sqlalchemy import create_engine
@@ -38,6 +46,9 @@ apiurl_musixmatch = 'http://api.musixmatch.com/ws/1.1/'
 
 
 def do_task():
+    """
+    while loop.
+    """
     time.sleep(1)
 
 
@@ -63,7 +74,7 @@ def search(search_term):
             if not data:
                 break
             all_data += data
-            sleep(0.4)
+            time.sleep(0.4)
         print "\n"
         json_obj = json.loads(all_data.decode("utf-8"))
         body = json_obj['message']['body']['track_list']
@@ -108,7 +119,7 @@ def song_view(song_id):
             if not data:
                 break
             all_data += data
-            sleep(0.4)
+            time.sleep(0.4)
         print "\n"
         json_obj = json.loads(all_data.decode("utf-8"))
         body = len(json_obj["message"]["body"])
@@ -117,7 +128,7 @@ def song_view(song_id):
         else:
             print colored.cyan(json_obj["message"]["body"]["lyrics"]["lyrics_body"], bold=12)
     except socket.timeout:
-        print ("Timeout raised and caught")
+        print "Timeout raised and caught"
 
 
 def song_save(song_id):
@@ -141,7 +152,7 @@ def song_save(song_id):
             if not data:
                 break
             all_data += data
-            sleep(0.4)
+            time.sleep(0.4)
         print "\n"
         json_obj = json.loads(all_data.decode("utf-8"))
         body = json_obj["message"]["body"]["lyrics"]["lyrics_body"]
@@ -153,7 +164,7 @@ def song_save(song_id):
             session.commit()
             print colored.green("Song saved successfully.", bold=12)
     except socket.timeout:
-        print ("Timeout raised and caught")
+        print "Timeout raised and caught"
 
 
 def song_clear():
