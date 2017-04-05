@@ -98,22 +98,28 @@ class SongLyricsFinder(cmd.Cmd):
     print colored.cyan('                                                 |type "help command" for  syntax |', bold=12)
     print colored.cyan("                                                 +--------------------------------+", bold=12)
 
-    prompt = colored.magenta("\nasce1062") + \
-        colored.cyan("@") + \
-        colored.yellow("AlexImmers-MacBook-Pro") + \
-        colored.red(":") + \
-        colored.cyan("~/bc-15-song-lyrics-finder") + \
-        colored.red("|") + \
-        colored.green("master") + \
-        colored.yellow("⚡") + \
-        colored.cyan("\n⇒")
+    # prompt = colored.magenta("\nasce1062") + \
+    #     colored.cyan("@") + \
+    #     colored.yellow("AlexImmers-MacBook-Pro") + \
+    #     colored.red(":") + \
+    #     colored.cyan("~/bc-15-song-lyrics-finder") + \
+    #     colored.red("|") + \
+    #     colored.green("master") + \
+    #     colored.yellow("⚡") + \
+    #     colored.cyan("\n⇒")
+
+    prompt = colored.blue("\n~") + colored.magenta("\n~❯")
 
     @docopt_cmd
     def do_find(self, arg):
         """
-        Usage: find <song_name>
+        Usage: find <song_name>...
         """
         query = arg["<song_name>"]
+        # query = ' '.join(str(e) for e in query)
+        # if the list is of integers, convert the elements before joining them.
+        # query = ' '.join(map(str, query))
+        query = ' '.join(query)
 
         # clear terminal first.
         os.system('cls' if os.name == 'nt' else 'clear')
